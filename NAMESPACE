@@ -1,0 +1,38 @@
+#useDynLib(rlib)
+#exportPattern("^[[:alpha:]]+")
+export(
+	#common utilities
+	read.tsv,
+	write.tsv,
+	writeCsv,
+	fread2,
+	writeBinMatrix,
+	readBinMatrix,
+	makeDir,
+	df0,
+	df2mat,
+	list2df,
+	read.zip,
+	recoverGeneSymbolFromExcelDate,
+	dropDuplicateRows,
+	nunique,
+	deEmptyNA,
+	dcor,
+	ddcor,
+	r2p,
+	ratio.test,
+	MannKendall.test,
+	Jonckheere.test,
+	JSD,
+	breslowday.test,
+	amvce,
+	rbind2m,
+	cbind2m,
+	read.rds,
+	save.rds
+)
+import("methods")
+importFrom("grDevices", "colors")
+importFrom("graphics", "lines", "par", "plot.new", "plot.window","polygon", "text")
+importFrom("utils", "read.delim", "write.csv", "write.table", "read.table" ,"unzip")
+importFrom("stats", "sd", "pnorm", "var", "as.dist", "mantelhaen.test", "pchisq", "p.adjust", "pt", "cor")
