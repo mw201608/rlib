@@ -1,6 +1,6 @@
 ## rlib
 
-R library of basic set of tools.
+An R library of functional utilities for data analysis and visualization.
 
 ### Installation
 ```
