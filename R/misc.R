@@ -100,3 +100,8 @@ labels2colors=function (labels, zeroIsGrey = TRUE, colorSeq = NULL, naColor = "g
     if (!is.null(dim(labels)))  dim(colors) = dim(labels)
     colors
 }
+to_title_case <- function(x){
+	x <- tolower(x)
+	substr(x,1,1) <- toupper(substr(x,1,1))
+	x
+}

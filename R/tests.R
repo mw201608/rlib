@@ -115,7 +115,7 @@ MDC=function(MatA,MatB,genes,modules,cor.method = c("pearson", "spearman"),dCorA
 	nB=ncol(MatB)
 	uniqueLabels=unique(modules)
 	cl=NULL
-	if(ncores>1 && require('parallel')){
+	if(ncores>1){
 		cl=makeCluster(ncores)
 		cat('Use',ncores,'cores\n')
 	}

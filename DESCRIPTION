@@ -1,11 +1,11 @@
 Package: rlib
 Type: Package
 Title: R Library for Data Analyses and Presentations
-Version: 0.0.4
-Date: 2017-01-24
+Version: 0.0.5
+Date: 2023-08-04
 Author: Minghui Wang
 Maintainer: Minghui Wang <minghui.wang@mssm.edu>
 Description: This package contains many useful functions for data analyses and plotting.
-Depends: R (>= 3.0.0), methods
+Depends: R (>= 3.0.0), methods, httr
 Suggests: parallel, data.table
 License: CC0

@@ -8,11 +8,14 @@ export(
 	fread2,
 	writeBinMatrix,
 	readBinMatrix,
+	readSingleColumnFromBinMatrix,
+	readSingleColumnFromRemoteBinMatrix,
 	makeDir,
 	df0,
 	df2mat,
 	list2df,
 	read.zip,
+	read.gzip,
 	recoverGeneSymbolFromExcelDate,
 	dropDuplicateRows,
 	nunique,
@@ -36,3 +39,6 @@ importFrom("grDevices", "colors")
 importFrom("graphics", "lines", "par", "plot.new", "plot.window","polygon", "text")
 importFrom("utils", "read.delim", "write.csv", "write.table", "read.table" ,"unzip")
 importFrom("stats", "sd", "pnorm", "var", "as.dist", "mantelhaen.test", "pchisq", "p.adjust", "pt", "cor")
+importFrom("stats", "median", "setNames", "wilcox.test")
+importFrom("httr", "GET", "add_headers", "http_status")
+importFrom('parallel', 'clusterExport', 'parLapply', 'makeCluster', 'stopCluster')

@@ -4,6 +4,7 @@
 \alias{writeCsv}
 \alias{fread2}
 \alias{read.zip}
+\alias{read.gzip}
 \alias{read.rds}
 \alias{save.rds}
 \title{Input and Output Utilities}
@@ -14,9 +15,10 @@ Wrapper functions to read or write from/to a file or connection.
 write.tsv(x,file="", row.names=FALSE, col.names=TRUE, sep='\t', quote=FALSE, verbose=TRUE)
 read.tsv(file, as.is=TRUE, header = TRUE, sep = "\t", quote = "\"",
 	dec = ".", fill = TRUE, comment.char = "", verbose=TRUE, ...)
-writeCsv(x,file="",row.names=FALSE, quote=TRUE, verbose=TRUE)
+writeCsv(x, file="", row.names=FALSE, quote=TRUE, verbose=TRUE)
 fread2(file, verbose=TRUE, showProgress=FALSE, ...)
-read.zip(file, FUN=read.table, ...)
+read.zip(file, FUN = read.table, ...)
+read.gzip(file, FUN = read.delim, ..., verbose = TRUE)
 read.rds(file, refhook = NULL)
 save.rds(object, file = "", ascii = FALSE, version = NULL, compress = TRUE, refhook = NULL)
 }
@@ -40,13 +42,13 @@ save.rds(object, file = "", ascii = FALSE, version = NULL, compress = TRUE, refh
  \item{version}{See \code{\link{saveRDS}}.}
  \item{compress}{See \code{\link{saveRDS}}.}
  \item{refhook}{a hook function for handling reference objects.}
- \item{...}{additional arguments.}
+ \item{...}{additional arguments, maybed used by \code{FUN}.}
 }
 \details{
-These functions are wrapper of existing read/write functions. \code{read.zip} will read from a zip archive.
+These functions are wrapper of existing read/write functions. \code{read.zip} will read a single file from a zip archive. Currently \code{read.zip} will not work when there are multiple files in the zip archive. \code{readGzOnTheFly} will read from a remote or local gzip archive with a single file.
 }
 \value{
-For \code{read.tsv}, a data frame (data.frame) containing a representation of the data in the file. For \code{fread2}, a data.table by default.
+For \code{read.tsv}, a data frame (data.frame) containing a representation of the data in the file. For \code{fread2}, a data.table by default. For \code{read.zip} and \code{read.gzip}, the return value depends on \code{FUN}.
 }
 \seealso{\code{\link{read.table}}, \code{\link{write.table}}, \code{\link{write.csv}}, \code{\link[data.table]{fread}}, \code{\link{unzip}}, \code{\link{readRDS}}, \code{\link{saveRDS}}}
 \examples{
