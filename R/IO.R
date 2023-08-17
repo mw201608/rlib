@@ -122,14 +122,14 @@ readDimsFromRemoteBinMatrix = function(url, dimBytes = 8, charBytes = 20, endian
 		r = paste0("bytes=0-", (2*dimBytes - 1))
 		if(verbose) cat('Range', r, '\n')
 		res = GET(url=url, config = add_headers(Range=r))
-		if(http_status(res)$category != "Success") print_err_and_return('Dimension retrieval failed\n', verbose = verbose)()
+		if(http_status(res)$category != "Success") print_err_and_return(ifelse(verbose, 'Dimension retrieval failed\n', NULL))(NULL)
 		dims = readBin(res$content, what='integer', size=dimBytes, n=2, endian = endian)
 		if(charBytes == 0) return(dims)
 	}
 	r = paste0("bytes=", 2 * dimBytes, "-", (2 * dimBytes + (dims[2] + dims[1]) * charBytes - 1))
 	if(verbose) cat('Range', r, '\n')
 	res = GET(url=url, config = add_headers(Range=r))
-	if(http_status(res)$category != "Success") print_err_and_return('Dimnames retrieval failed\n', verbose = verbose)()
+	if(http_status(res)$category != "Success") print_err_and_return(ifelse(verbose, 'Dimnames retrieval failed\n', NULL))(NULL)
 	nam = readBin(res$content, character(), size = charBytes, n = dims[1] + dims[2], endian = endian)
 	return(list(rownames = nam[(1 + dims[2]) : (dims[1] + dims[2])], colnames = nam[1:dims[2]]))
 }
@@ -139,7 +139,7 @@ readSingleColumnFromRemoteBinMatrix = function(j, id, url, dimBytes = 8, charByt
 	if(is.null(Dimnames)) return(NULL)
 	if(is.null(dims)) dims <- c(length(Dimnames$rownames), length(Dimnames$colnames))
 	if(missing(j)){
-		if(missing(id)) print_err_and_return('Either j or id must be provided\n', verbose = verbose)()
+		if(missing(id)) print_err_and_return(ifelse(verbose, 'Either j or id must be provided\n', NULL))(NULL)
 		j <- which(Dimnames$colnames == id)
 	}
 	if(length(j) == 0) return(NULL)
@@ -151,6 +151,6 @@ readSingleColumnFromRemoteBinMatrix = function(j, id, url, dimBytes = 8, charByt
 	r = paste0("bytes=", b1, "-", b2-1)
 	if(verbose) cat('Range', r, '\n')
 	res = GET(url=url, config=add_headers(Range=r))
-	if(http_status(res)$category != "Success") print_err_and_return('Data retrieval failed\n', verbose = verbose)()
+	if(http_status(res)$category != "Success") print_err_and_return(ifelse(verbose, 'Data retrieval failed\n', NULL))(NULL)
 	readBin(res$content, numeric(), size = dataBytes, n = dims[1], endian = endian)
 }

@@ -105,8 +105,7 @@ to_title_case <- function(x){
 	substr(x,1,1) <- toupper(substr(x,1,1))
 	x
 }
-print_err_and_return = function(err, verbose = TRUE){
-	FUN = function() return(NULL)
-	if(verbose) cat("Error:", err, "\'n");
-	FUN
+print_err_and_return = function(err = NULL){
+	if(!is.null(err)) cat("Error:", err, "\n");
+	return
 }
